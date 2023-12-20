@@ -19,12 +19,12 @@
 ## Project Members:
     Name : Krupal Patel
     Mail ID : krupalmpatel20@gnu.ac.in
-    Specilization : BDA
+    Specilization : Big Data Analytics
 
     Name : 	Het Parikh
     Mail ID : 
-    Specilization : CBA
+    Specilization : Cloud Based Application
 
     Name : 	Prajapati Sahil Kantibhai
     Mail ID : 
-    Specilization : CS
+    Specilization : Cyber Security.
