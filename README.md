@@ -27,4 +27,4 @@
 
     Name : 	Prajapati Sahil Kantibhai
     Mail ID : 
-    Specilization : Cyber Security.
+    Specilization : Cyber Security
