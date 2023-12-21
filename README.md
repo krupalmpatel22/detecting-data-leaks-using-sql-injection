@@ -6,14 +6,11 @@
 ## Description:
     
 ## Tools:
-    - George Washington
-    * John Adams
-    + Thomas Jefferson
-    _JavaScript
-    -jquery
-    -Ajax
-    *React JS
-    *Node JS
+    JavaScript
+    jquery
+    Ajax
+    React JS
+    Node JS
 
 ## Internal Guide:
     Name : Prof. Aniket Patel
