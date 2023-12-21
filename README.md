@@ -5,7 +5,9 @@
 
 ## Description:
     
-
+- George Washington
+* John Adams
++ Thomas Jefferson
 ## Tools:
     _JavaScript
     -jquery
