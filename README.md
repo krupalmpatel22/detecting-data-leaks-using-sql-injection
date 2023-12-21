@@ -7,13 +7,11 @@
     
 
 ## Tools:
-    <ul>
-    <li>JavaScript</li>
-    <li>jquery</li>
-    <li>Ajax</li>
-    <li>React JS</li>
-    <li>Node JS</li>
-    </ul>
+    *JavaScript
+    *jquery
+    *Ajax
+    *React JS
+    *Node JS
 
 ## Internal Guide:
     Name : Prof. Aniket Patel
