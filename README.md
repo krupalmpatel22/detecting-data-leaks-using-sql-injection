@@ -7,9 +7,9 @@
     
 
 ## Tools:
-    *JavaScript
-    *jquery
-    *Ajax
+    _JavaScript
+    -jquery
+    -Ajax
     *React JS
     *Node JS
 
