@@ -5,10 +5,10 @@
 
 ## Description:
     
-- George Washington
-* John Adams
-+ Thomas Jefferson
 ## Tools:
+    - George Washington
+    * John Adams
+    + Thomas Jefferson
     _JavaScript
     -jquery
     -Ajax
