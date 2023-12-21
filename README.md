@@ -6,6 +6,15 @@
 ## Description:
     
 
+## Tools:
+    <ul>
+    <li>JavaScript</li>
+    <li>jquery</li>
+    <li>Ajax</li>
+    <li>React JS</li>
+    <li>Node JS</li>
+    </ul>
+
 ## Internal Guide:
     Name : Prof. Aniket Patel
     Phone No : 9429062411
