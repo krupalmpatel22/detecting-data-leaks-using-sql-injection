@@ -35,6 +35,7 @@ function Registration() {
       console.log(data);
 
       if (data.message === 'Registration successful') {
+        alert('Registration successful');
         console.log('Successfully signed up');
         window.location.replace('/login');
       }
