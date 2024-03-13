@@ -1,0 +1,63 @@
+ <html>
+    <head>
+        <body>
+           <div class="Dashboard" style="width: 1280px; height: 832px; position: relative; background: #D9EDBF">
+    <div class="Rectangle2" style="width: 1280px; height: 138px; left: 0px; top: 0px; position: absolute; background: #FFCF81"></div>
+    <div class="Rectangle3" style="width: 182px; height: 74px; left: 1046px; top: 32px; position: absolute; background: #FFB996; border-radius: 50px"></div>
+    <div class="SignOut" style="left: 1069px; top: 51px; position: absolute; text-align: center; color: black; font-size: 28px; font-family: JetBrains Mono; font-weight: 400; word-wrap: break-word">Sign-out</div>
+    <div class="SqlInjection" style="width: 255px; height: 49px; left: 43px; top: 45px; position: absolute; text-align: center; color: #332941; font-size: 36px; font-family: Itim; font-weight: 400; word-wrap: break-word">SQL INJECTION</div>
+    <img class="Image1" style="width: 225px; height: 225px; left: 58px; top: 191px; position: absolute; border-radius: 50%; z-index: 1;" src=" ">
+    <div class="FullName" style="left: 79px; top: 440px; position: absolute; text-align: center; color: black; font-size: 36px; font-family: Itim; font-weight: 400; word-wrap: break-word; z-index: 2;">FULL NAME</div>
+    <div class="Rectangle5" style="width: 850px; height: 621px; left: 345px; top: 165px; position: absolute; background: #FAEF9B; border-radius: 79px"></div>
+    <div class="Line20" style="width: 717px; height: 0px; left: 408px; top: 232px; position: absolute; border: 3px black solid"></div>
+    <div class="Line21" style="width: 717px; height: 0px; left: 408px; top: 269px; position: absolute; border: 3px black solid"></div>
+    <div class="Line22" style="width: 717px; height: 0px; left: 408px; top: 310px; position: absolute; border: 3px black solid"></div>
+    <div class="Line23" style="width: 717px; height: 0px; left: 408px; top: 354px; position: absolute; border: 3px black solid"></div>
+    <div class="Line24" style="width: 717px; height: 0px; left: 408px; top: 398px; position: absolute; border: 3px black solid"></div>
+    <div class="Line15" style="width: 220px; height: 0px; left: 65px; top: 549px; position: absolute; border: 1px black solid"></div>
+    <div class="Line16" style="width: 220px; height: 0px; left: 65px; top: 577px; position: absolute; border: 1px black solid"></div>
+    <div class="Line17" style="width: 220px; height: 0px; left: 65px; top: 607px; position: absolute; border: 1px black solid"></div>
+    <div class="Line18" style="width: 220px; height: 0px; left: 65px; top: 640px; position: absolute; border: 1px black solid"></div>
+    <div class="Line19" style="width: 220px; height: 0px; left: 65px; top: 673px; position: absolute; border: 1px black solid"></div>
+    <div class="MfaMultiFactorAuth" style="left: 383px; top: 645px; position: absolute; text-align: center; color: black; font-size: 28px; font-family: JetBrains Mono; font-weight: 400; word-wrap: break-word; z-index: 2;">MFA (Multi Factor Auth) <button id="mfaToggle" class="toggle-button">Off</button></div>
+    <div class="EMailVerification" style="left: 383px; top: 572px; position: absolute; text-align: center; color: black; font-size: 28px; font-family: JetBrains Mono; font-weight: 400; word-wrap: break-word; z-index: 2;">E-mail Verification <button id="emailToggle" class="toggle-button">Off</button></div>
+    <div class="PhoneVerification" style="left: 383px; top: 502px; position: absolute; text-align: center; color: black; font-size: 28px; font-family: JetBrains Mono; font-weight: 400; word-wrap: break-word; z-index: 2;">Phone Verification <button id="phoneToggle" class="toggle-button">Off</button></div>
+</div>
+
+<style>
+    .toggle-button {
+        margin-left: 10px;
+        padding: 10px 20px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    .toggle-button:hover {
+        background-color: #45a049;
+    }
+</style>
+
+<script>
+    
+    document.getElementById("mfaToggle").addEventListener("click", function () {
+        var button = document.getElementById("mfaToggle");
+        button.textContent = button.textContent === "On" ? "Off" : "On";
+    });
+    document.getElementById("emailToggle").addEventListener("click", function () {
+        var button = document.getElementById("emailToggle");
+        button.textContent = button.textContent === "On" ? "Off" : "On";
+    });
+
+    document.getElementById("phoneToggle").addEventListener("click", function () {
+        var button = document.getElementById("phoneToggle");
+        button.textContent = button.textContent === "On" ? "Off" : "On";
+    });
+</script>
+        </body>
+    </head>
+ </html>
+

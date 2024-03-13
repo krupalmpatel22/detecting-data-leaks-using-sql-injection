@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login Page</title>
+<style>
+  body, html {
+  height: 100%;
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+.login-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  align-items: center;
+  background-color: #D9EDBF;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding-top: 16px;
+  padding-bottom: 16px;
+
+  background-color: #FFCF81;
+}
+
+h1 {
+  margin: 0;
+  color: #000;
+  padding: 10px;
+}
+
+#signup-btn {
+  background-color: #FFB996;
+  border: none;
+  margin: 10px;
+  padding: 20px;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around; /* This will distribute the space evenly */
+  margin: auto;
+  background-color: #FAEF9B; /* Your chosen pale yellow color */
+  width: 40%;
+  min-height: 35%; /* Changed to min-height to ensure content fits */
+  padding: 32px;
+  border-radius: 20px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.login-form input {
+  width: calc(100% - 16px); /* Subtracting the padding on both sides */
+  margin-bottom: 16px;
+  padding: 8px;
+  border: none;
+  border-bottom: 2px solid #000;
+  background-color: transparent;
+}
+
+#login-btn {
+  margin: auto;
+  background-color: #FFB996;
+  border: none;
+  padding: 8px 16px;
+  width: 50%;
+  border-radius: 20px;
+  cursor: pointer;
+  align: center
+}
+
+.login-form input:focus, #login-btn:focus, #signup-btn:focus {
+  outline: none;
+}
+
+  a {
+  color: inherit; /* Makes the link color the same as the parent element */
+  text-decoration: none; /* Removes underline from the link */
+  background-color: transparent; /* Removes any background color */
+  -webkit-text-decoration-skip: objects; /* Prevents the text underline from skipping over objects, just in case */
+}
+
+/* To remove the link's appearance when it's clicked */
+a:visited, a:link, a:active {
+  color: inherit;
+}
+
+/* To remove the default focus outline that browsers apply for accessibility */
+a:focus {
+  outline: none;
+}
+
+/* For hover effects, if you want them to be the same as the normal state */
+a:hover {
+  color: inherit;
+  text-decoration: none;
+}
+
+</style>
+</head>
+<body>
+<div class="login-container">
+  <header>
+    <h1><a href="/"> SQL INJECTION</a></h1>
+    <button type="button" id="signup-btn"><a href="/signup">Sign-up</a></button>
+  </header>
+  <form class="login-form" action="/login" method="post">
+    <input type="text" id="mail-id" name="username" placeholder="Username" required>
+    <input type="password" id="password" name="password" placeholder="Password" required>
+    <button type="submit" id="login-btn">Login</button>
+  </form>
+</div>
+</body>
+</html>
