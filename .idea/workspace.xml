@@ -4,25 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="afd588db-6c1a-4f0e-ba10-039291937134" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/SQLi.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/model/SQLi.h5" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/model/SQLi.keras" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/model/data/sqliv2.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/model/model.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/component/login.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/dashboard.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/home.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/login.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/sign_up.html" afterDir="false" />
-    </list>
+    <list default="true" id="afd588db-6c1a-4f0e-ba10-039291937134" name="Changes" comment="Basic Set-up" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -126,6 +108,19 @@
       <option name="presentableId" value="Default" />
       <updated>1709830601934</updated>
     </task>
+    <task id="LOCAL-00001" summary="Basic Set-up">
+      <option name="closed" value="true" />
+      <created>1710351153432</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1710351153432</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Basic Set-up" />
+    <option name="LAST_COMMIT_MESSAGE" value="Basic Set-up" />
   </component>
 </project>
