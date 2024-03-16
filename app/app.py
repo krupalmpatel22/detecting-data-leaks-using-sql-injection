@@ -65,10 +65,23 @@ def home():
         return render_template('home.html', username=session['username'])
     return redirect(url_for('login'))
 
-@app.route('/signup', methods=['POST'])
+@app.route('/signup', methods=['POST', 'GET'])
 def signup():
     if request.method == 'POST' and 'username' in request.form and 'password' in request.form and 'repassword' in request.form and 'mailId' in request.form and 'phoneNo' in request.form and 'dob' in request.form :
-        pass
+        username = request.form['username']
+        password = request.form['password']
+        mailId = request.form['mailId']
+        phoneNo = request.form['phoneNo']
+        dob = request.form['dob']
+        print("INSERT INTO Customers (username, password, mail_id, phone_no, dob) VALUES ('{}', '{}', '{}', '{}', '{}')".format(username, password, mailId, phoneNo, dob))
+        cursor = mysql.connection.cursor()
+        account = cursor.execute("INSERT INTO Customers (username, password, mail_id, phone_no, dob) VALUES ('{}', '{}', '{}', '{}', '{}')".format(username, password, mailId, phoneNo, dob))
+        mysql.connection.commit()
+        if account:
+            msg = "user data added into database."
+        else:
+            msg = "User was not created."
+        return render_template('login.html', msg=msg)
     return render_template('sign_up.html')
 
 if __name__ == '__main__':

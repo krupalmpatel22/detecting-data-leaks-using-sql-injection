@@ -4,18 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="afd588db-6c1a-4f0e-ba10-039291937134" name="Changes" comment="Basic Set-up">
+    <list default="true" id="afd588db-6c1a-4f0e-ba10-039291937134" name="Changes" comment="Updating model and checking SQL">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/app.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/SQLi.h5" beforeDir="false" afterPath="$PROJECT_DIR$/app/modules/model/SQLi.h5" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/SQLi.keras" beforeDir="false" afterPath="$PROJECT_DIR$/app/modules/model/SQLi.keras" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/data/sqliv2.csv" beforeDir="false" afterPath="$PROJECT_DIR$/app/modules/model/data/sqliv2.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/model.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/modules/model/model.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/component/login.css" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/component/login.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/dashboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/dashboard.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/home.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/sign_up.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/sign_up.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/app.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/templates/sign_up.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/sign_up.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,17 +54,17 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "DefaultHtmlFileTemplate": "HTML File",
-    "Python.app (1).executor": "Run",
-    "Python.app.executor": "Run",
-    "Python.model.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;Python.app (1).executor&quot;: &quot;Run&quot;,
+    &quot;Python.app.executor&quot;: &quot;Run&quot;,
+    &quot;Python.model.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\[0] PERSONAL\SQLi\app\modules" />
@@ -194,11 +186,20 @@
       <option name="project" value="LOCAL" />
       <updated>1710351650352</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Updating model and checking SQL">
+      <option name="closed" value="true" />
+      <created>1710579348427</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1710579348427</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Basic Set-up" />
-    <option name="LAST_COMMIT_MESSAGE" value="Basic Set-up" />
+    <MESSAGE value="Updating model and checking SQL" />
+    <option name="LAST_COMMIT_MESSAGE" value="Updating model and checking SQL" />
   </component>
 </project>
