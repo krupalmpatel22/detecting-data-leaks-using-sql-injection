@@ -3,9 +3,12 @@ from tensorflow.keras import models
 from tensorflow.keras.preprocessing.text import Tokenizer
 from tensorflow.keras.preprocessing.sequence import pad_sequences
 import pandas as pd
+import os
 
 def predict_sql_injection(text):
-    df = pd.read_csv('D:\[0] PERSONAL\SQLi\model\data\sqliv2.csv', encoding='utf-16')
+    data_file_path = os.getcwd() +"\modules\model\data\sqliv2.csv"
+    model_path = os.getcwd() +"\modules\model\SQLi.h5"
+    df = pd.read_csv(data_file_path, encoding='utf-16')
     df['Sentence'] = df['Sentence'].astype(str)
 
     # Example dataset (in practice, use a larger, more diverse dataset)
@@ -18,12 +21,12 @@ def predict_sql_injection(text):
     tokenizer = Tokenizer(num_words=10000, oov_token="<OOV>")
     tokenizer.fit_on_texts(X_train)
 
-    model =  models.load_model('D:\[0] PERSONAL\SQLi\model\SQLi.h5')
+    model = models.load_model(model_path)
     sequence = tokenizer.texts_to_sequences([text])
 
     padded = pad_sequences(sequence, maxlen=100, padding='post')
     prediction = model.predict(padded)
-
+    print(prediction[0][0])
     return prediction[0][0] > 0.8  # Returns True if SQL injection prone, False otherwise
 
 

@@ -105,11 +105,52 @@ a:hover {
   color: inherit;
   text-decoration: none;
 }
+.popup {
+    position: fixed;
+    bottom: 20px; /* Adjust as needed */
+    right: 20px; /* Adjust as needed */
+    background-color: #FFB996; /* Background color */
+    border: 1px solid #8CC152; /* Border color */
+    border-radius: 5px;
+    padding: 20px;
+    z-index: 9999;
+    display: none; /* Initially hidden */
+}
+
+.popup p {
+    margin: 0;
+}
+
+.popup .close {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+/* Fade animation for the popup */
+@keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
+@keyframes fadeOut {
+    from {opacity: 1;}
+    to {opacity: 0;}
+}
+
 
 </style>
 </head>
 <body>
 <div class="login-container">
+  {% if msg %}
+    <div id="popup" class="popup">
+        <span class="close" onclick="closePopup()">&times;</span>
+        <p>{{ msg }}</p>
+    </div>
+{% endif %}
   <header>
     <h1><a href="/"> SQL INJECTION</a></h1>
     <button type="button" id="signup-btn"><a href="/signup">Sign-up</a></button>
@@ -120,5 +161,24 @@ a:hover {
     <button type="submit" id="login-btn">Login</button>
   </form>
 </div>
+<script>
+  // Function to close the popup
+function closePopup() {
+    var popup = document.getElementById("popup");
+    popup.style.animation = "fadeOut 0.5s";
+    setTimeout(() => { popup.style.display = "none"; }, 500);
+}
+
+// Show the popup when the page loads
+window.onload = function() {
+    var popup = document.getElementById("popup");
+    if (popup) {
+        popup.style.display = "block";
+        popup.style.animation = "fadeIn 0.5s";
+        setTimeout(closePopup, 30000); // Close the popup after 30 seconds
+    }
+};
+
+</script>
 </body>
 </html>
