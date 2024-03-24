@@ -52,6 +52,7 @@ def login():
                 msg = 'Incorrect username/password!'
         else:
             msg = "That is SQL injection Prone"
+    print(msg)
     return render_template('login.html', msg=msg)
 
 
@@ -86,6 +87,23 @@ def signup():
             msg = "User was not created."
         return render_template('login.html', msg=msg)
     return render_template('sign_up.html')
+
+
+# @app.route('/search')
+# def search():
+#     query = request.args.get('query')
+#     db_connection = sqlite3.connect('database.db')  # Ensure you have a database named 'database.db'
+#     cursor = db_connection.cursor()
+#
+#     # Vulnerable SQL Query Execution
+#     try:
+#         cursor.execute(f"SELECT * FROM products WHERE name LIKE '%{query}%'")
+#         results = cursor.fetchall()
+#         return str(results)  # For demonstration, showing results as string
+#     except Exception as e:
+#         return f"An error occurred: {str(e)}"
+#     finally:
+#         db_connection.close()
 
 if __name__ == '__main__':
     app.run(debug=True)

@@ -1,134 +1,111 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registration Page</title>
-    <style>
-          body, html {
-  height: 100%;
-  margin: 0;
-  font-family: Arial, sans-serif;
-}
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Registration Page</title>
+<style>
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #e6f7ff;
+    color: #333;
+  }
 
-.registration-container {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  align-items: center;
-  background-color: #D9EDBF;
-}
+  header {
+    background-color: #004d99;
+    color: #fff;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
 
-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  padding-top: 16px;
-  padding-bottom: 16px;
+  header h1 {
+    margin: 0;
+    font-size: 24px;
+  }
 
-  background-color: #FFCF81;
-}
+  .btn-sign {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 18px;
+    margin-left: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
 
-h1 {
-  margin: 0;
-  color: #000;
-  padding: 10px;
-}
+  .btn-sign:hover {
+    background-color: #45a049;
+  }
 
-#signup-btn {
-  background-color: #FFB996;
-  border: none;
-  margin: 10px;
-  padding: 20px;
-  border-radius: 20px;
-  cursor: pointer;
-}
+  .container {
+    max-width: 1200px;
+    margin: 70px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
 
-.registration-form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-around; /* This will distribute the space evenly */
-  margin: auto;
-  background-color: #FAEF9B; /* Your chosen pale yellow color */
-  width: 40%;
-  min-height: 35%; /* Changed to min-height to ensure content fits */
-  padding: 32px;
-  border-radius: 20px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-}
+  .registration-form {
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #f0f0f0;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    max-width: 600px;
+    margin: auto;
+  }
 
-.registration-form input {
-  width: calc(100% - 16px); /* Subtracting the padding on both sides */
-  margin-bottom: 16px;
-  padding: 8px;
-  border: none;
-  border-bottom: 2px solid #000;
-  background-color: transparent;
-}
+  .registration-form input, .registration-form button {
+    font-size: 18px;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+  }
 
-#login-btn {
-  margin: auto;
-  background-color: #FFB996;
-  border: none;
-  padding: 8px 16px;
-  width: 50%;
-  border-radius: 20px;
-  cursor: pointer;
-  align: center
-}
+  .registration-form button {
+    background-color: #4CAF50;
+    color: white;
+    cursor: pointer;
+  }
 
-.registration-form input:focus, #login-btn:focus, #signup-btn:focus {
-  outline: none;
-}
+  .registration-form button:hover {
+    background-color: #45a049;
+  }
 
-  a {
-  color: inherit; /* Makes the link color the same as the parent element */
-  text-decoration: none; /* Removes underline from the link */
-  background-color: transparent; /* Removes any background color */
-  -webkit-text-decoration-skip: objects; /* Prevents the text underline from skipping over objects, just in case */
-}
-
-/* To remove the link's appearance when it's clicked */
-a:visited, a:link, a:active {
-  color: inherit;
-}
-
-/* To remove the default focus outline that browsers apply for accessibility */
-a:focus {
-  outline: none;
-}
-
-/* For hover effects, if you want them to be the same as the normal state */
-a:hover {
-  color: inherit;
-  text-decoration: none;
-}
-
-    </style>
+</style>
 </head>
 <body>
-    <div class="registration-container">
-        <header>
-            <h1><a href="/"> SQL INJECTION</a></h1>
-            <button type="button" id="signup-btn"><a href="/login">Login</a></button>
-        </header>
-        <form class="registration-form" action="/signup" method="post">
-            <input type="text" id="username" name="username" placeholder="Username" required>
-            <input type="password" id="password" name="password" placeholder="Password" required>
-            <input type="password" id="repassword" name="repassword" placeholder="Password" required>
-            <input type="email" id="mail-id" name="mailId" placeholder="Mail Id" required>
-            <input type="tel" id="phone-no" name="phoneNo" placeholder="Phone No" required>
-            <input type="text" id="dob" name="dob" placeholder="DOB DDMMYYYY" required>
-            <!-- Placeholder for captcha image -->
-<!--            <div class="captcha-container">-->
-<!--                <img src="path-to-your-captcha-image" alt="captcha" class="captcha-image">-->
-<!--                <input type="text" id="captcha-code" name="captchaCode" placeholder="Captcha Code" required>-->
-<!--            </div>-->
-<!--            <input type="text" id="otp" name="otp" placeholder="OTP" required>-->
-            <button type="submit" id="login-btn">Register</button>
-        </form>
-    </div>
+<header>
+  <h1><a href="/" style="color: white; text-decoration: none;">SQL Injection</a></h1>
+  <div>
+    <button class="btn-sign"><a href="/login" style="color: white; text-decoration: none;">Login</a></button>
+  </div>
+</header>
+
+<div class="container">
+  <form class="registration-form" action="/signup" method="post">
+    <input type="text" id="username" name="username" placeholder="Username" required>
+    <input type="password" id="password" name="password" placeholder="Password" required>
+    <input type="password" id="repassword" name="repassword" placeholder="Confirm Password" required>
+    <input type="email" id="mail-id" name="mailId" placeholder="Email Address" required>
+    <input type="tel" id="phone-no" name="phoneNo" placeholder="Phone Number" required>
+    <input type="text" id="dob" name="dob" placeholder="DOB DDMMYYYY" required>
+    <button type="submit" id="login-btn">Register</button>
+  </form>
+</div>
+
 </body>
 </html>
