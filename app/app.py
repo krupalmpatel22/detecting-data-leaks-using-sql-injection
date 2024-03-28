@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, session
+from flask import Flask, render_template, request, redirect, url_for, session, render_template_string
 from flask_mysqldb import MySQL
 import MySQLdb.cursors
 from modules.model.model import predict_sql_injection
@@ -67,7 +67,18 @@ def logout():
 def home():
     if 'loggedin' in session:
         #create_database()
-        return render_template('home.html', username=session['username'])
+        results = []
+        cursor = mysql.connection.cursor()
+        try:
+            sql_query = "SELECT * FROM products"
+            cursor.execute(sql_query)
+            results = cursor.fetchall()
+        except Exception as e:
+            print(f"An error occurred: {str(e)}")
+        finally:
+            cursor.close()
+
+        return render_template('home.html', results=results, username=session['username'])
     return redirect(url_for('login'))
 
 @app.route('/signup', methods=['POST', 'GET'])
@@ -92,18 +103,21 @@ def signup():
 
 @app.route('/search')
 def search():
-    query = request.args.get('query')
-    cursor = mysql.connection.cursor()
+    query = request.args.get('query', '')  # Default to empty string if no query
+    results = []
+    if query:  # Only execute search if there's a query
+        cursor = mysql.connection.cursor()
+        try:
+            sql_query = "SELECT * FROM products WHERE name LIKE %s"
+            like_pattern = f"%{query}%"
+            cursor.execute(sql_query, (like_pattern,))
+            results = cursor.fetchall()
+        except Exception as e:
+            print(f"An error occurred: {str(e)}")
+        finally:
+            cursor.close()
 
-    # Vulnerable SQL Query Execution
-    try:
-        cursor.execute(f"SELECT * FROM products WHERE name LIKE '%{query}%'")
-        results = cursor.fetchall()
-        return str(results)  # For demonstration, showing results as string
-    except Exception as e:
-        return f"An error occurred: {str(e)}"
-    finally:
-        print("fetch done")
+    return render_template('home.html', query=query, results=results)
 
 def create_database():
     print("creating search table")
