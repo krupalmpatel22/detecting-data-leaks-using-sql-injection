@@ -205,7 +205,8 @@
 {% elif query %}
 <div id="messagePopup" class="popup">
   <span class="close-btn" onclick="closePopup()">&times;</span>
-  <p id="messageContent">No results found for "{{ query }}".</p>
+  <p>No results found for "{{ query }}"</p>
+  <p style="color: red;">{{ msg }}</p>
 </div>
 
 <script>

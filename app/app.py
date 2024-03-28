@@ -103,21 +103,26 @@ def signup():
 
 @app.route('/search')
 def search():
+    msg = ''
     query = request.args.get('query', '')  # Default to empty string if no query
     results = []
     if query:  # Only execute search if there's a query
         cursor = mysql.connection.cursor()
         try:
-            sql_query = "SELECT * FROM products WHERE name LIKE %s"
-            like_pattern = f"%{query}%"
-            cursor.execute(sql_query, (like_pattern,))
-            results = cursor.fetchall()
+            is_injection_prone = predict_sql_injection(query)
+            if not is_injection_prone:
+                sql_query = "SELECT * FROM products WHERE name LIKE %s"
+                like_pattern = f"%{query}%"
+                cursor.execute(sql_query, (like_pattern,))
+                results = cursor.fetchall()
+            else:
+                msg = f"{query} is SQL injection Prone."
         except Exception as e:
             print(f"An error occurred: {str(e)}")
         finally:
             cursor.close()
 
-    return render_template('home.html', query=query, results=results)
+    return render_template('home.html', query=query, results=results, msg=msg)
 
 def create_database():
     print("creating search table")
