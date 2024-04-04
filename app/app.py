@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, session
+from flask import Flask, render_template, request, redirect, url_for, session, render_template_string
 from flask_mysqldb import MySQL
 import MySQLdb.cursors
 from modules.model.model import predict_sql_injection
@@ -66,7 +66,19 @@ def logout():
 @app.route('/home')
 def home():
     if 'loggedin' in session:
-        return render_template('home.html', username=session['username'])
+        #create_database()
+        results = []
+        cursor = mysql.connection.cursor()
+        try:
+            sql_query = "SELECT * FROM products"
+            cursor.execute(sql_query)
+            results = cursor.fetchall()
+        except Exception as e:
+            print(f"An error occurred: {str(e)}")
+        finally:
+            cursor.close()
+
+        return render_template('home.html', results=results, username=session['username'])
     return redirect(url_for('login'))
 
 @app.route('/signup', methods=['POST', 'GET'])
@@ -89,21 +101,49 @@ def signup():
     return render_template('sign_up.html')
 
 
-# @app.route('/search')
-# def search():
-#     query = request.args.get('query')
-#     db_connection = sqlite3.connect('database.db')  # Ensure you have a database named 'database.db'
-#     cursor = db_connection.cursor()
-#
-#     # Vulnerable SQL Query Execution
-#     try:
-#         cursor.execute(f"SELECT * FROM products WHERE name LIKE '%{query}%'")
-#         results = cursor.fetchall()
-#         return str(results)  # For demonstration, showing results as string
-#     except Exception as e:
-#         return f"An error occurred: {str(e)}"
-#     finally:
-#         db_connection.close()
+@app.route('/search')
+def search():
+    msg = ''
+    query = request.args.get('query', '')  # Default to empty string if no query
+    results = []
+    if query:  # Only execute search if there's a query
+        cursor = mysql.connection.cursor()
+        try:
+            is_injection_prone = predict_sql_injection(query)
+            if not is_injection_prone:
+                sql_query = "SELECT * FROM products WHERE name LIKE %s"
+                like_pattern = f"%{query}%"
+                cursor.execute(sql_query, (like_pattern,))
+                results = cursor.fetchall()
+            else:
+                msg = f"{query} is SQL injection Prone."
+        except Exception as e:
+            print(f"An error occurred: {str(e)}")
+        finally:
+            cursor.close()
+
+    return render_template('home.html', query=query, results=results, msg=msg)
+
+def create_database():
+    print("creating search table")
+    cursor = mysql.connection.cursor()
+
+    # Create table
+    #cursor.execute('''CREATE TABLE products
+    #             (id INTEGER PRIMARY KEY, name TEXT, description TEXT, price REAL)''')
+
+    # Insert some sample data
+    products = [
+        (1, 'Laptop', 'A personal computer for mobile use.', 1200.00),
+        (2, 'Smartphone', 'A mobile phone with advanced features.', 800.00),
+        (3, 'Tablet', 'A portable personal computer with a touchscreen.', 450.00)
+    ]
+
+    for p in products:
+        cursor.execute('INSERT INTO products (id, name, description, price) VALUES (%s,%s,%s,%s)', p)
+
+    # Save (commit) the changes and close the connection
+    mysql.connection.commit()
 
 if __name__ == '__main__':
     app.run(debug=True)

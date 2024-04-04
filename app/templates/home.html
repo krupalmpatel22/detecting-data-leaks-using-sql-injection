@@ -101,12 +101,77 @@
   .search-box button:hover {
     background-color: #45a049;
   }
+.result-container table {
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+    border-collapse: separate; /* Allow rounded corners */
+    border-spacing: 0; /* Remove space between cells */
+    border-radius: 10px;
+    overflow: hidden; /* Ensure the rounded corners are visible */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  }
 
+  th, td {
+    border-bottom: 1px solid #ddd; /* Only horizontal borders */
+    text-align: left;
+    padding: 12px 15px; /* Increased padding for better spacing */
+  }
+
+  th {
+    background-color: #007bff; /* Brighter color for header */
+    color: white;
+    font-size: 16px; /* Slightly larger text in headers */
+    font-weight: bold; /* Bold font for headers */
+  }
+
+  tr {
+    transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+  }
+
+  tr:nth-child(even) {
+    background-color: #f2f2f2; /* Zebra striping for rows, unchanged */
+  }
+
+  tr:hover {
+    background-color: #d1e7ff; /* Light blue background on hover */
+  }
+
+  /* Ensure the last row's border is visible */
+  tr:last-child td {
+    border-bottom: none;
+  }
+  .popup {
+    display: none; /* Hidden by default */
+    position: fixed;
+    right: 20px; /* Distance from the right */
+    bottom: 20px; /* Distance from the bottom */
+    z-index: 9;
+    padding: 20px;
+    background: #fff;
+    color: #333;
+    border-radius: 5px;
+    box-shadow: 0 2px 15px rgba(0,0,0,.2);
+    border: 1px solid #ddd; /* Optional: adds a border */
+  }
+
+  .popup.show {
+    display: block;
+  }
+
+  .close-btn {
+    cursor: pointer;
+    position: absolute;
+    right: 10px;
+    top: 5px;
+    font-size: 20px;
+    color: #333; /* Optional: color for the close button */
+  }
 </style>
 </head>
 <body>
 <header>
-  <h1>SQL Injection</h1>
+  <h1><a href="/home" style="color: white; text-decoration: none;">SQL Injection</a></h1>
   <div class="profile-dropdown">
     <button class="profile-btn">{{ session.username }}</button>
     <div class="dropdown-content">
@@ -122,6 +187,45 @@
     <button type="submit">Search</button>
   </form>
 </div>
+
+{% if results %}
+  <div class="result-container">
+    <table>
+      <tr><th>ID</th><th>Name</th><th>Description</th><th>Price</th></tr>
+      {% for row in results %}
+      <tr>
+        <td>{{ row[0] }}</td>
+        <td>{{ row[1] }}</td>
+        <td>{{ row[2] }}</td>
+        <td>{{ row[3] }}</td>
+      </tr>
+      {% endfor %}
+    </table>
+  </div>
+{% elif query %}
+<div id="messagePopup" class="popup">
+  <span class="close-btn" onclick="closePopup()">&times;</span>
+  <p>No results found for "{{ query }}"</p>
+  <p style="color: red;">{{ msg }}</p>
+</div>
+
+<script>
+  // Immediately invoke the popup if this script block is executed
+  (function() {
+    // Close popup function
+    function closePopup() {
+      document.getElementById('messagePopup').style.display = 'none';
+    }
+
+    // Make closePopup available globally to use in inline onclick attribute
+    window.closePopup = closePopup;
+
+    // Since this code block is executed only when there are no results,
+    // directly show the popup without additional checks
+    document.getElementById('messagePopup').style.display = 'block';
+  })();
+</script>
+{% endif %}
 
 </body>
 </html>

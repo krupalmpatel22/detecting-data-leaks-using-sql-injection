@@ -8,6 +8,8 @@ import os
 def predict_sql_injection(text):
     data_file_path = os.getcwd() +"\modules\model\data\sqliv2.csv"
     model_path = os.getcwd() +"\modules\model\SQLi.h5"
+    # data_file_path = os.getcwd() +"\data\sqliv2.csv"
+    # model_path = os.getcwd() +"\SQLi.h5"
     df = pd.read_csv(data_file_path, encoding='utf-16')
     df['Sentence'] = df['Sentence'].astype(str)
 
@@ -31,5 +33,5 @@ def predict_sql_injection(text):
 
 
 if __name__ == "__main__":
-    text = "UID = '' OR 1=1--"
+    text = "' ;DROP TABLE users; --"
     print(predict_sql_injection(text))
