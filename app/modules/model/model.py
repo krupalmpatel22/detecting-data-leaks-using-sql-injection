@@ -6,8 +6,9 @@ import pandas as pd
 import os
 
 def predict_sql_injection(text):
-    data_file_path = os.getcwd() +"\modules\model\data\sqliv2.csv"
-    model_path = os.getcwd() +"\modules\model\SQLi.h5"
+    file_path = os.path.dirname(os.path.abspath(__file__))
+    data_file_path = file_path + "\data\sqliv2.csv"
+    model_path = file_path + "\SQLi.h5"
     # data_file_path = os.getcwd() +"\data\sqliv2.csv"
     # model_path = os.getcwd() +"\SQLi.h5"
     df = pd.read_csv(data_file_path, encoding='utf-16')
