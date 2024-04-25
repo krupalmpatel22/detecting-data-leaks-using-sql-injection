@@ -1,7 +1,8 @@
 from flask import Flask, render_template, request, redirect, url_for, session, render_template_string
 from flask_mysqldb import MySQL
 import MySQLdb.cursors
-from modules.model.model import predict_sql_injection
+from modules.model.model import predict_sql_injection, get_model
+from tensorflow.keras.preprocessing.sequence import pad_sequences
 
 app = Flask(__name__)
 
@@ -26,16 +27,27 @@ def login():
         username = request.form['username']
         password = request.form['password']
         cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+
         abc = "SELECT * FROM users WHERE UID = '" + username + "'"
-        print(abc)
-        is_injection_prone1 = predict_sql_injection(abc)
+        is_injection_prone1 = predict_injection(abc)
         print(f"The string {abc} is {'SQL injection prone' if is_injection_prone1 else 'not SQL injection prone'}")
         abc = "'" + username + "'"
-        print(abc)
-        is_injection_prone2 = predict_sql_injection(abc)
+        is_injection_prone2 = predict_injection(abc)
         print(f"The string {abc} is {'SQL injection prone' if is_injection_prone2 else 'not SQL injection prone'}")
-        is_injection_prone = is_injection_prone1 and is_injection_prone2
-        print(is_injection_prone)
+        username_is_injection_prone = is_injection_prone1 and is_injection_prone2
+        print(username_is_injection_prone)
+
+        abc = "SELECT * FROM users WHERE Password = '" + password + "'"
+        is_injection_prone1 = predict_injection(abc)
+        print(f"The string {abc} is {'SQL injection prone' if is_injection_prone1 else 'not SQL injection prone'}")
+        abc = "'" + password + "'"
+        is_injection_prone2 = predict_injection(abc)
+        print(f"The string {abc} is {'SQL injection prone' if is_injection_prone2 else 'not SQL injection prone'}")
+        password_is_injection_prone = is_injection_prone1 and is_injection_prone2
+
+        is_injection_prone = password_is_injection_prone or username_is_injection_prone
+        print("Final Output : ", is_injection_prone)
+
         if not is_injection_prone:
             abc = "SELECT * FROM users WHERE UID = '{}' AND Password ='{}'".format(username, password)
             print(abc)
@@ -109,7 +121,7 @@ def search():
     if query:  # Only execute search if there's a query
         cursor = mysql.connection.cursor()
         try:
-            is_injection_prone = predict_sql_injection(query)
+            is_injection_prone = predict_injection(query)
             if not is_injection_prone:
                 sql_query = "SELECT * FROM products WHERE name LIKE %s"
                 like_pattern = f"%{query}%"
@@ -145,5 +157,18 @@ def create_database():
     # Save (commit) the changes and close the connection
     mysql.connection.commit()
 
+
+def create_model():
+    global model, tokenizer
+    model, tokenizer = get_model()
+
+def predict_injection(text):
+    sequence = tokenizer.texts_to_sequences([text])
+
+    padded = pad_sequences(sequence, maxlen=100, padding='post')
+    prediction = model.predict(padded)
+    return prediction[0][0] > 0.8  # Returns True if SQL injection prone, False otherwise
+
 if __name__ == '__main__':
+    create_model()
     app.run(host="0.0.0.0", port=5000, debug=True)
