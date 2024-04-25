@@ -7,10 +7,10 @@ from tensorflow.keras.preprocessing.sequence import pad_sequences
 app = Flask(__name__)
 
 # MySQL configurations
-app.config['MYSQL_HOST'] = 'localhost'
-app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = 'root'
-app.config['MYSQL_DB'] = 'SQLi'
+app.config['MYSQL_HOST'] = 'databasesqli.czacwk6kkw0j.ap-south-1.rds.amazonaws.com'
+app.config['MYSQL_USER'] = 'admin'
+app.config['MYSQL_PASSWORD'] = 'Admin123'
+app.config['MYSQL_DB'] = 'sqli'
 
 app.secret_key = "KrupalPatel"
 
