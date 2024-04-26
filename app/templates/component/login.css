@@ -1,0 +1,77 @@
+body, html {
+  height: 100%;
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+.login-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  align-items: center;
+  background-color: #D9EDBF;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding-top: 16px;
+  padding-bottom: 16px;
+
+  background-color: #FFCF81;
+}
+
+h1 {
+  margin: 0;
+  color: #000;
+  padding: 10px;
+}
+
+#signup-btn {
+  background-color: #FFB996;
+  border: none;
+  margin: 10px;
+  padding: 20px;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around; /* This will distribute the space evenly */
+  margin: auto;
+  background-color: #FAEF9B; /* Your chosen pale yellow color */
+  width: 40%;
+  min-height: 35%; /* Changed to min-height to ensure content fits */
+  padding: 32px;
+  border-radius: 20px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.login-form input {
+  width: calc(100% - 16px); /* Subtracting the padding on both sides */
+  margin-bottom: 16px;
+  padding: 8px;
+  border: none;
+  border-bottom: 2px solid #000;
+  background-color: transparent;
+}
+
+#login-btn {
+  margin: auto;
+  background-color: #FFB996;
+  border: none;
+  padding: 8px 16px;
+  width: 50%;
+  border-radius: 20px;
+  cursor: pointer;
+  align: center
+}
+
+.login-form input:focus, #login-btn:focus, #signup-btn:focus {
+  outline: none;
+}

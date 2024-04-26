@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login Page</title>
+<style>
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #e6f7ff;
+    color: #333;
+  }
+
+  header {
+    background-color: #004d99;
+    color: #fff;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+
+  header h1 {
+    margin: 0;
+    font-size: 24px;
+  }
+
+  .btn-sign {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 18px;
+    margin-left: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  .btn-sign:hover {
+    background-color: #45a049;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 70px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+
+  .login-form {
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #f0f0f0;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    max-width: 600px;
+    margin: auto;
+  }
+
+  .login-form input, .login-form button {
+    font-size: 18px;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+  }
+
+  .login-form button {
+    background-color: #4CAF50;
+    color: white;
+    cursor: pointer;
+  }
+
+  .login-form button:hover {
+    background-color: #45a049;
+  }
+
+  @media (max-width: 768px) {
+    .container, .login-form {
+      max-width: 90%;
+      margin: 20px auto;
+    }
+
+    header {
+      flex-direction: column;
+    }
+
+    .btn-sign {
+      margin: 10px 0; /* Adjust spacing for mobile */
+    }
+  }
+.popup {
+    display: none; /* Hidden by default */
+    position: fixed;
+    right: 20px; /* Distance from the right */
+    bottom: 20px; /* Distance from the bottom */
+    z-index: 9;
+    padding: 20px;
+    background: #fff;
+    color: #333;
+    border-radius: 5px;
+    box-shadow: 0 2px 15px rgba(0,0,0,.2);
+    border: 1px solid #ddd; /* Optional: adds a border */
+  }
+
+  .popup.show {
+    display: block;
+  }
+
+  .close-btn {
+    cursor: pointer;
+    position: absolute;
+    right: 10px;
+    top: 5px;
+    font-size: 20px;
+    color: #333; /* Optional: color for the close button */
+  }
+</style>
+</head>
+<body>
+<header>
+  <h1><a href="/" style="color: white; text-decoration: none;">SQL Injection</a></h1>
+  <div>
+    <button class="btn-sign"><a href="/signup" style="color: white; text-decoration: none;">Sign Up</a></button>
+  </div>
+</header>
+
+<div class="container">
+  <form class="login-form" action="/login" method="post">
+    <input type="text" id="username" name="username" placeholder="Username" required>
+    <input type="password" id="password" name="password" placeholder="Password" required>
+    <button type="submit" id="login-btn">Login</button>
+  </form>
+</div>
+
+<!-- Popup Message -->
+<div id="messagePopup" class="popup">
+  <span class="close-btn" onclick="closePopup()">&times;</span>
+  <p id="messageContent"><!-- Message will be inserted here --></p>
+</div>
+
+<script>
+  // Close popup function
+  function closePopup() {
+    document.getElementById('messagePopup').style.display = 'none';
+  }
+
+  // Example of how to show the popup with a message
+  // This part should be dynamically generated based on the message from the Flask backend
+  // If there is a message to show, unhide the popup and display the message
+  window.onload = function() {
+    // Example message from Flask backend
+    var msg = "{{ msg }}"; // Replace this with the actual message variable from Flask
+    if (msg) {
+      document.getElementById('messageContent').textContent = msg;
+      document.getElementById('messagePopup').style.display = 'block';
+    }
+  };
+</script>
+
+</body>
+</html>

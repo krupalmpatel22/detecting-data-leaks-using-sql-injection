@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Registration Page</title>
+<style>
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #e6f7ff;
+    color: #333;
+  }
+
+  header {
+    background-color: #004d99;
+    color: #fff;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+
+  header h1 {
+    margin: 0;
+    font-size: 24px;
+  }
+
+  .btn-sign {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 18px;
+    margin-left: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  .btn-sign:hover {
+    background-color: #45a049;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 70px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+
+  .registration-form {
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #f0f0f0;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    max-width: 600px;
+    margin: auto;
+    position: relative;
+  }
+
+  .registration-form input, .registration-form button {
+    font-size: 18px;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    width: 100%; /* Adjusted for consistency */
+  }
+  .info-icon {
+    display: inline-block;
+    background-image: url('https://upload.wikimedia.org/wikipedia/commons/e/e8/Simple_icon_information.svg');
+    background-size: cover;
+    width: 20px;
+    height: 20px;
+    cursor: help;
+    position: absolute;
+    right: 5px; /* Adjust position relative to the field */
+    top: 10px;
+  }
+
+  .input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+
+  .tooltip {
+    visibility: hidden;
+    width: 220px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+    top: -5px;
+    right: 45px;
+    transform: translateX(100%);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .info-icon:hover .tooltip {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  .registration-form button {
+    background-color: #45a049;
+    color: white;
+  }
+
+</style>
+</head>
+<body>
+<header>
+  <h1><a href="/" style="color: white; text-decoration: none;">SQL Injection</a></h1>
+  <div>
+    <button class="btn-sign"><a href="/login" style="color: white; text-decoration: none;">Login</a></button>
+  </div>
+</header>
+
+<div class="container">
+  <form class="registration-form" action="/signup" method="post">
+    <div class="input-wrapper">
+      <input type="text" id="username" name="username" placeholder="Username" required>
+      <span class="info-icon"><span class="tooltip">Only A-Z characters, no spaces.</span></span>
+    </div>
+    <div class="input-wrapper">
+      <input type="password" id="password" name="password" placeholder="Password" required>
+      <span class="info-icon"><span class="tooltip">No spaces or special characters like ' " \ ;</span></span>
+    </div>
+    <div class="input-wrapper">
+      <input type="password" id="repassword" name="repassword" placeholder="Confirm Password" required>
+      <span class="info-icon"><span class="tooltip">Must match the password above.</span></span>
+    </div>
+    <div class="input-wrapper">
+      <input type="email" id="mail-id" name="mailId" placeholder="Email Address" required>
+      <span class="info-icon"><span class="tooltip">Enter a valid email address.</span></span>
+    </div>
+    <div class="input-wrapper">
+      <input type="tel" id="phone-no" name="phoneNo" placeholder="Phone Number" required>
+      <span class="info-icon"><span class="tooltip">Should be 10 digits long.</span></span>
+    </div>
+    <div class="input-wrapper">
+      <input type="text" id="dob" name="dob" placeholder="YYYY-MM-DD" required>
+      <span class="info-icon"><span class="tooltip">Date format: YYYY-MM-DD.</span></span>
+    </div>
+    <button type="submit" id="login-btn">Register</button>
+  </form>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const form = document.querySelector('.registration-form');
+    form.addEventListener('submit', function (event) {
+        const username = document.getElementById('username').value;
+        const password = document.getElementById('password').value;
+        const repassword = document.getElementById('repassword').value;
+        const email = document.getElementById('mail-id').value;
+        const phone = document.getElementById('phone-no').value;
+        const dob = document.getElementById('dob').value;
+
+        // Simple validation for empty fields
+        if (!username || !password || !repassword || !email || !phone || !dob) {
+            alert('Please fill in all fields.');
+            event.preventDefault(); // Prevent form from submitting
+            return;
+        }
+
+        // Validate username: Only characters a-z (case-insensitive)
+        if (!/^[a-zA-Z]+$/.test(username)) {
+            alert('Username must only contain letters from A to Z.');
+            event.preventDefault();
+            return;
+        }
+
+        // Validate password for no spaces
+        if (/\s/.test(password)) {
+            alert('Password must not contain spaces.');
+            event.preventDefault();
+            return;
+        }
+
+        // Validate password against SQL injection attempts
+        if (/['"\\;]/.test(password)) {
+            alert('Password must not contain single quotes, double quotes, backslashes, or semicolons.');
+            event.preventDefault();
+            return;
+        }
+
+        // Validate email address format
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+            alert('Please enter a valid email address.');
+            event.preventDefault();
+            return;
+        }
+
+        // Validate phone number (basic example)
+        if (!/^\d{10}$/.test(phone)) {
+            alert('Phone number must be 10 digits.');
+            event.preventDefault();
+            return;
+        }
+
+        // Validate date of birth format (YYYY-MM-DD)
+        if (!/^\d{4}-\d{2}-\d{2}$/.test(dob)) {
+            alert('Date of birth must be in YYYY-MM-DD format.');
+            event.preventDefault();
+            return;
+        }
+
+        // Check if passwords match
+        if (password !== repassword) {
+            alert('Passwords do not match.');
+            event.preventDefault();
+            return;
+        }
+    });
+});
+</script>
+
+</body>
+</html>
