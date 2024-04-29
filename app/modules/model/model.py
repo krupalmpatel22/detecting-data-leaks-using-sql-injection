@@ -34,8 +34,9 @@ def predict_sql_injection(text):
 
 def get_model():
     file_path = os.path.dirname(os.path.abspath(__file__))
-    data_file_path = file_path + "\data\sqliv2.csv"
-    model_path = file_path + "\SQLi.h5"
+    print(file_path)
+    data_file_path = file_path + "/data/sqliv2.csv"
+    model_path = file_path + "/SQLi.h5"
     # data_file_path = os.getcwd() +"\data\sqliv2.csv"
     # model_path = os.getcwd() +"\SQLi.h5"
     df = pd.read_csv(data_file_path, encoding='utf-16')

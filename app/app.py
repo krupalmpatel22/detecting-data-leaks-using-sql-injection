@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for, session, render_template_string
 from flask_mysqldb import MySQL
 import MySQLdb.cursors
-from modules.model.model import predict_sql_injection, get_model
+from modules.model.model import get_model
 from tensorflow.keras.preprocessing.sequence import pad_sequences
 
 app = Flask(__name__)
