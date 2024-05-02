@@ -82,6 +82,26 @@ def logout():
     session.pop('username', None)
     return redirect(url_for('login'))
 
+@app.route('/profile')
+def profile():
+    if 'loggedin' in session:
+        # Assuming 'username' is stored in the session when the user logs in
+        username = session['username']
+        print(username)
+        cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+        cursor.execute('SELECT * FROM customers WHERE username = %s', (username,))
+        user = cursor.fetchone()
+        cursor.close()
+
+        if user:
+            user['profile_image'] = 'https://bootdey.com/img/Content/avatar/avatar1.png'
+            user['dob'] = user['dob'].strftime('%Y-%m-%d')
+            print(user)
+            return render_template('profile.html', user=user)
+        else:
+            return 'User not found', 404
+    return redirect(url_for('login'))
+
 @app.route('/home')
 def home():
     if 'loggedin' in session:
