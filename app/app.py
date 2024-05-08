@@ -16,8 +16,9 @@ app.secret_key = "KrupalPatel"
 
 mysql = MySQL(app)
 
-global ct
-ct: int = int(0)
+def on_starting(server):
+    create_model()
+    print("Model is created")
 @app.after_request
 def add_no_cache_header(response):
     response.headers["Cache-Control"] = "no-cache, no-store, must-revalidate"
@@ -27,10 +28,6 @@ def add_no_cache_header(response):
 
 @app.route('/')
 def index():
-    if ct == 0:
-        create_model()
-        print("Model Params Created")
-        ct += 1
     return render_template('index.html')
 
 @app.route('/login', methods=['GET', 'POST'])
