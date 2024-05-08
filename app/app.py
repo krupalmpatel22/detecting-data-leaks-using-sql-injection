@@ -16,9 +16,6 @@ app.secret_key = "KrupalPatel"
 
 mysql = MySQL(app)
 
-def on_starting(server):
-    create_model()
-    print("Model is created")
 @app.after_request
 def add_no_cache_header(response):
     response.headers["Cache-Control"] = "no-cache, no-store, must-revalidate"
@@ -191,6 +188,9 @@ def create_database():
 def create_model():
     global model, tokenizer
     model, tokenizer = get_model()
+    print("Model Created")
+
+app.before_first_request(create_model)
 
 def predict_injection(text):
     sequence = tokenizer.texts_to_sequences([text])
