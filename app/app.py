@@ -16,6 +16,8 @@ app.secret_key = "KrupalPatel"
 
 mysql = MySQL(app)
 
+global ct
+ct: int = int(0)
 @app.after_request
 def add_no_cache_header(response):
     response.headers["Cache-Control"] = "no-cache, no-store, must-revalidate"
@@ -25,6 +27,10 @@ def add_no_cache_header(response):
 
 @app.route('/')
 def index():
+    if ct == 0:
+        create_model()
+        print("Model Params Created")
+        ct += 1
     return render_template('index.html')
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -198,11 +204,4 @@ def predict_injection(text):
 
 if __name__ == '__main__':
     create_model()
-    print("##########################")
-    print("##########################")
-    print("##########################")
-    print("MODEL PARAMS CREATED")
-    print("##########################")
-    print("##########################")
-    print("##########################")
     app.run(host="0.0.0.0", port=80)
