@@ -191,7 +191,6 @@ def create_model():
     print("Model is created")
 
 def predict_injection(text):
-    create_model()
     sequence = tokenizer.texts_to_sequences([text])
 
     padded = pad_sequences(sequence, maxlen=100, padding='post')
