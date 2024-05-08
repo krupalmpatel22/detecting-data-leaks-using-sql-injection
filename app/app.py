@@ -186,13 +186,14 @@ def create_database():
 
 
 def create_model():
-    global model, tokenizer
-    model, tokenizer = get_model()
-    print("Model Created")
-
-app.before_first_request(create_model)
+    global model, tokenizer, model_created
+    if not model_created:
+        model, tokenizer = get_model()
+        model_created = True
+        print("Model is created")
 
 def predict_injection(text):
+    create_model()
     sequence = tokenizer.texts_to_sequences([text])
 
     padded = pad_sequences(sequence, maxlen=100, padding='post')
