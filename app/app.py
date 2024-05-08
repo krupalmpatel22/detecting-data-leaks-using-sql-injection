@@ -186,11 +186,9 @@ def create_database():
 
 
 def create_model():
-    global model, tokenizer, model_created
-    if not model_created:
-        model, tokenizer = get_model()
-        model_created = True
-        print("Model is created")
+    global model, tokenizer
+    model, tokenizer = get_model()
+    print("Model is created")
 
 def predict_injection(text):
     create_model()
